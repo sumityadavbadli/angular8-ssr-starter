@@ -7,7 +7,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:client-and-server-bundles": "ng build --prod --aot --output-hashing=all && ng run Angular8-SSR:server:production",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "compile:server": "tsc -p server.tsconfig.json",
+    "serve:ssr": "node dist/server"
   },
   "private": true,
   "dependencies": {
@@ -18,7 +22,11 @@
     "@angular/forms": "~8.2.14",
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
+    "@angular/platform-server": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@nguniversal/express-engine": "~8.2.6",
+    "@nguniversal/module-map-ngfactory-loader": "~8.2.6",
+    "express": "^4.17.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
